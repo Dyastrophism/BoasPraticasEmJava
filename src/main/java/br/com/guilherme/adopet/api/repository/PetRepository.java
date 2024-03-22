@@ -1,8 +1,12 @@
 package br.com.guilherme.adopet.api.repository;
 
+import br.com.guilherme.adopet.api.model.Abrigo;
 import br.com.guilherme.adopet.api.model.Pet;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface PetRepository extends JpaRepository<Pet, Long> {
+import java.util.List;
 
+public interface PetRepository extends JpaRepository<Pet, Long> {
+    List<Pet> findAllByAdotadoFalse();
+    List<Pet> findByAbrigo(Abrigo abrigo);
 }

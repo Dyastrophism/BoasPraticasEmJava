@@ -1,6 +1,6 @@
 package br.com.guilherme.adopet.api.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import br.com.guilherme.adopet.api.dto.CadastroPetDTO;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -32,6 +32,19 @@ public class Pet {
     private Abrigo abrigo;
     @OneToOne(mappedBy = "pet")
     private Adocao adocao;
+
+    public Pet(){}
+
+    public Pet(CadastroPetDTO dto, Abrigo abrigo) {
+        this.tipo = dto.tipo();
+        this.nome = dto.nome();
+        this.raca = dto.raca();
+        this.idade = dto.idade();
+        this.cor = dto.cor();
+        this.peso = dto.peso();
+        this.abrigo = abrigo;
+        this.adotado = false;
+    }
 
     @Override
     public boolean equals(Object o) {
